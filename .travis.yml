@@ -27,7 +27,7 @@ matrix:
 before_install:
     # - env
     - pwd
-    - [[ -v CC ]] && printenv CC
+    - "[[ -v CC ]] && printenv CC"
     - [[ -v CXX ]] && printenv CXX
     - bash -c "[[ -x `which gcc` ]] && gcc --version"
     - bash -c "[[ -x `which g++` ]] && g++ --version"
