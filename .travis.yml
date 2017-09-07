@@ -24,7 +24,7 @@ matrix:
 before_install:
     # - env
     - pwd
-    - [[ -x `which gcc` ]] && gcc --version
+    - bash -c "[[ -x `which gcc` ]] && gcc --version"
     - ssh -o StrictHostKeyChecking=no anoncvs@anoncvs.netbsd.org cvs
     - if [[ -x `which cvs` ]]; then  travis_wait cvs -Q -d anoncvs@anoncvs.netbsd.org:/cvsroot co -rpkgsrc-2017Q2 -P pkgsrc; else git clone https://github.com/NetBSD/pkgsrc.git ; env PWD=${PWD}/pkgsrc git checkout pkgsrc_2017Q1; fi
     # The program 'cvs' is currently not installed. 2017-09-07
