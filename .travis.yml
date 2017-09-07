@@ -4,9 +4,12 @@ language: c
 
 addons:
     apt:
+        sources:
+            - ubuntu-toolchain-r-test
         packages:
             - cvs
-            # build-essential # build-essential is already the newest version (11.6ubuntu6).
+            - gcc-8
+            - build-essential # build-essential is already the newest version (11.6ubuntu6).
 
 compiler:
   # - clang # => Build dependency gcc3-c>=3.3.5nb1: NOT found
