@@ -5,7 +5,7 @@ language: c
 addons:
     apt:
         packages:
-            # - cvs
+            - cvs
             # build-essential # build-essential is already the newest version (11.6ubuntu6).
 
 compiler:
