@@ -5,7 +5,7 @@ language: c
 addons:
     apt:
         packages:
-            - cvs
+            # - cvs
 
 compiler:
   - clang
@@ -24,7 +24,7 @@ before_install:
     - env
     - pwd
     - ssh -o StrictHostKeyChecking=no anoncvs@anoncvs.netbsd.org cvs
-    - cvs -Q -d anoncvs@anoncvs.netbsd.org:/cvsroot co -rpkgsrc-2017Q2 -P pkgsrc
+    - if [[ -x `which cvs` ]]; then  cvs -Q -d anoncvs@anoncvs.netbsd.org:/cvsroot co -rpkgsrc-2017Q2 -P pkgsrc; else git clone https://github.com/NetBSD/pkgsrc.git ; env PWD=${PWD}/pkgsrc git checkout pkgsrc-2017Q2; fi
     # The program 'cvs' is currently not installed. 2017-09-07
     # - git clone https://github.com/NetBSD/pkgsrc.git ; env PWD=${PWD}/pkgsrc git checkout pkgsrc-2017Q2
     - ls pkgsrc/bootstrap
