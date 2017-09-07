@@ -8,7 +8,7 @@ addons:
             - ubuntu-toolchain-r-test
         packages:
             - cvs
-            - gcc-8
+            - g++-7
             - build-essential # build-essential is already the newest version (11.6ubuntu6).
 
 compiler:
