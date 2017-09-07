@@ -24,7 +24,7 @@ before_install:
     - env
     - pwd
     - ssh -o StrictHostKeyChecking=no anoncvs@anoncvs.netbsd.org cvs
-    - cvs -d anoncvs@anoncvs.netbsd.org:/cvsroot co -rpkgsrc-2017Q2 -P pkgsrc > /dev/null
+    - cvs -q -d anoncvs@anoncvs.netbsd.org:/cvsroot co -rpkgsrc-2017Q2 -P pkgsrc
     # The program 'cvs' is currently not installed. 2017-09-07
     # - git clone https://github.com/NetBSD/pkgsrc.git ; env PWD=${PWD}/pkgsrc git checkout pkgsrc-2017Q2
     - ls pkgsrc/bootstrap
