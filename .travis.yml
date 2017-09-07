@@ -1,0 +1,34 @@
+---
+sudo: false
+language: c
+
+compiler:
+  - clang
+  # - gcc
+
+cache:
+  directories:
+    # - $HOME/...
+
+matrix:
+  fast_finish: true
+  include:
+  allow_failures:
+
+before_install:
+    - cvs -d anoncvs@anoncvs.netbsd.org:/cvsroot co -rpkgsrc-2017Q2 -P pkgsrc
+    - ls pkgsrc/bootstrap
+    - pkgsrc/bootstrap/bootstrap --help
+    - pkgsrc/bootstrap/bootstrap --prefix=${HOME}/pkg
+    - PATH=${HOME}/pkg/sbin:${HOME}/pkg/bin:${PATH}
+    - MANPATH=${HOME}/pkg/man:${MANPATH}
+    - ls pkgsrc/*
+    - ls ${HOME}/pkg
+
+install:
+
+before_script:
+
+script:
+
+after_success:
