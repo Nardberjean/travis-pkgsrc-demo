@@ -25,13 +25,13 @@ before_install:
     # - env
     - pwd
     - ssh -o StrictHostKeyChecking=no anoncvs@anoncvs.netbsd.org cvs
-    - if [[ -x `which cvs` ]]; then  cvs -q -d anoncvs@anoncvs.netbsd.org:/cvsroot co -rpkgsrc-2017Q2 -P pkgsrc; else git clone https://github.com/NetBSD/pkgsrc.git ; env PWD=${PWD}/pkgsrc git checkout pkgsrc_2017Q1; fi
+    - if [[ -x `which cvs` ]]; then  travis_wait cvs -Q -d anoncvs@anoncvs.netbsd.org:/cvsroot co -rpkgsrc-2017Q2 -P pkgsrc; else git clone https://github.com/NetBSD/pkgsrc.git ; env PWD=${PWD}/pkgsrc git checkout pkgsrc_2017Q1; fi
     # The program 'cvs' is currently not installed. 2017-09-07
     # - git clone https://github.com/NetBSD/pkgsrc.git ; env PWD=${PWD}/pkgsrc git checkout pkgsrc-2017Q2
     - ls pkgsrc/bootstrap
     - export SH=/bin/bash
     - pkgsrc/bootstrap/bootstrap --help
-    - pkgsrc/bootstrap/bootstrap --prefix=${HOME}/pkg
+    - pkgsrc/bootstrap/bootstrap --unprivileged --prefix=${HOME}/pkg
     - PATH=${HOME}/pkg/sbin:${HOME}/pkg/bin:${PATH}
     - MANPATH=${HOME}/pkg/man:${MANPATH}
     - ls pkgsrc/*
@@ -46,3 +46,4 @@ script:
 after_success:
 
 # https://github.com/agjohnson/ohess-blog/blob/master/pub/using-pkgsrc-on-debian-squeeze.rst
+# https://docs.travis-ci.com/user/common-build-problems/#Build-times-out-because-no-output-was-received
