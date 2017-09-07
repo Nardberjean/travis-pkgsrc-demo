@@ -35,16 +35,16 @@ before_install:
     - pkgsrc/bootstrap/bootstrap --unprivileged --prefix=${HOME}/pkg
     - PATH=${HOME}/pkg/sbin:${HOME}/pkg/bin:${PATH}
     - MANPATH=${HOME}/pkg/man:${MANPATH}
-    - ls pkgsrc/*
     - ls ${HOME}/pkg
 
-install:
+# install:
 
-before_script:
+# before_script:
 
 script:
+    - ls pkgsrc/*
 
-after_success:
+# after_success:
 
 # https://github.com/agjohnson/ohess-blog/blob/master/pub/using-pkgsrc-on-debian-squeeze.rst
 # https://docs.travis-ci.com/user/common-build-problems/#Build-times-out-because-no-output-was-received
