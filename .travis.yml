@@ -8,7 +8,7 @@ addons:
             - ubuntu-toolchain-r-test
         packages:
             - cvs
-            - g++-6
+            - g++-7
             - build-essential # build-essential is already the newest version (11.6ubuntu6).
 
 compiler:
@@ -31,14 +31,18 @@ before_install:
     - if [[ -v CXX ]]; then printenv CXX; fi
     - if [[ -x `which gcc` ]]; then gcc --version; fi
     - if [[ -x `which g++` ]]; then g++ --version; fi
-    - if [[ -x `which gcc-7` ]]; then gcc-7 --version; fi
-    - if [[ -x `which g++-7` ]]; then g++-7 --version; fi
-    - if [[ -x `which gcc-6` ]]; then gcc-6 --version; fi
-    - if [[ -x `which g++-6` ]]; then g++-6 --version; fi
-    - if [[ -x `which gcc-5` ]]; then gcc-5 --version; fi
-    - if [[ -x `which g++-5` ]]; then g++-5 --version; fi
-    - if [[ -x `which gcc-4.9` ]]; then gcc-4.9 --version; fi
-    - if [[ -x `which g++-4.9` ]]; then g++-4.9 --version; fi
+    - if [[ -x `which gcc-7` ]]; then gcc-7 --version; CC=gcc-7; fi
+    - if [[ -x `which g++-7` ]]; then g++-7 --version; CXX=g++-7; fi
+    - if [[ -x `which gcc-6` ]]; then gcc-6 --version; CC=gcc-6; fi
+    - if [[ -x `which g++-6` ]]; then g++-6 --version; CXX=g++-6; fi
+    - if [[ -x `which gcc-5` ]]; then gcc-5 --version; CC=gcc-5; fi
+    - if [[ -x `which g++-5` ]]; then g++-5 --version; CXX=g++-5; fi
+    - if [[ -x `which gcc-4.9` ]]; then gcc-4.9 --version; CC=gcc-4.9; fi
+    - if [[ -x `which g++-4.9` ]]; then g++-4.9 --version; CXX=g++-4.9; fi
+    - if [[ -v CC ]]; then printenv CC; fi
+    - if [[ -v CXX ]]; then printenv CXX; fi
+    - if [[ -x `which $CC` ]]; then $CC --version; fi
+    - if [[ -x `which $CXX` ]]; then $CXX --version; fi
     - ssh -o StrictHostKeyChecking=no anoncvs@anoncvs.netbsd.org cvs
     - if [[ -x `which cvs` ]]; then  travis_wait cvs -Q -d anoncvs@anoncvs.netbsd.org:/cvsroot co -rpkgsrc-2017Q2 -P pkgsrc; else git clone https://github.com/NetBSD/pkgsrc.git ; env PWD=${PWD}/pkgsrc git checkout pkgsrc_2017Q1; fi
     # The program 'cvs' is currently not installed. 2017-09-07
