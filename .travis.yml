@@ -16,7 +16,14 @@ matrix:
   allow_failures:
 
 before_install:
-    - cvs -d anoncvs@anoncvs.netbsd.org:/cvsroot co -rpkgsrc-2017Q2 -P pkgsrc
+    # - cvs -d anoncvs@anoncvs.netbsd.org:/cvsroot co -rpkgsrc-2017Q2 -P pkgsrc
+    # The program 'cvs' is currently not installed. 2017-09-07
+    - pwd
+    - git clone https://github.com/NetBSD/pkgsrc.git
+    - cd pkgsrc 
+    - git checkout pkgsrc-2017Q2
+    - cd
+    - pwd
     - ls pkgsrc/bootstrap
     - pkgsrc/bootstrap/bootstrap --help
     - pkgsrc/bootstrap/bootstrap --prefix=${HOME}/pkg
