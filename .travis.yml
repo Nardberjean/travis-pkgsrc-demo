@@ -27,18 +27,18 @@ matrix:
 before_install:
     # - env
     - pwd
-    - "[[ -v CC ]] && printenv CC"
-    - "[[ -v CXX ]] && printenv CXX"
-    - bash -c "[[ -x `which gcc` ]] && gcc --version"
-    - bash -c "[[ -x `which g++` ]] && g++ --version"
-    - bash -c "[[ -x `which gcc-7` ]] && gcc-7 --version"
-    - bash -c "[[ -x `which g++-7` ]] && g++-7 --version"
-    - bash -c "[[ -x `which gcc-6` ]] && gcc-6 --version"
-    - bash -c "[[ -x `which g++-6` ]] && g++-6 --version"
-    - bash -c "[[ -x `which gcc-5` ]] && gcc-5 --version"
-    - bash -c "[[ -x `which g++-5` ]] && g++-5 --version"
-    - bash -c "[[ -x `which gcc-4.9` ]] && gcc-4.9 --version"
-    - bash -c "[[ -x `which g++-4.9` ]] && g++-4.9 --version"
+    - if [[ -v CC ]]; then printenv CC; fi
+    - if [[ -v CXX ]]; then printenv CXX; fi
+    - if [[ -x `which gcc` ]]; then gcc --version; fi
+    - if [[ -x `which g++` ]]; then g++ --version; fi
+    - if [[ -x `which gcc-7` ]]; then gcc-7 --version; fi
+    - if [[ -x `which g++-7` ]]; then g++-7 --version; fi
+    - if [[ -x `which gcc-6` ]]; then gcc-6 --version; fi
+    - if [[ -x `which g++-6` ]]; then g++-6 --version; fi
+    - if [[ -x `which gcc-5` ]]; then gcc-5 --version; fi
+    - if [[ -x `which g++-5` ]]; then g++-5 --version; fi
+    - if [[ -x `which gcc-4.9` ]]; then gcc-4.9 --version; fi
+    - if [[ -x `which g++-4.9` ]]; then g++-4.9 --version; fi
     - ssh -o StrictHostKeyChecking=no anoncvs@anoncvs.netbsd.org cvs
     - if [[ -x `which cvs` ]]; then  travis_wait cvs -Q -d anoncvs@anoncvs.netbsd.org:/cvsroot co -rpkgsrc-2017Q2 -P pkgsrc; else git clone https://github.com/NetBSD/pkgsrc.git ; env PWD=${PWD}/pkgsrc git checkout pkgsrc_2017Q1; fi
     # The program 'cvs' is currently not installed. 2017-09-07
