@@ -10,7 +10,8 @@ addons:
             - cvs
             # - g++-7 # 7.2.0 does not compile pkgsrc-2017Q2
             # - g++-6 # 6.3.0 does not compile pkgsrc-2017Q2
-            - g++-5
+            # - g++-5 # 5.4.1 does not compile pkgsrc-2017Q2
+            - g++-4.9
             - build-essential # build-essential is already the newest version (11.6ubuntu6).
 
 compiler:
